@@ -1,4 +1,26 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Id"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+
+    }
+
+
 }
-<h2>Home</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+</head>
+<body>
+    <div>
+        <h1>Dashboard</h1>
+        <h3>UserName :@Session["Name"].ToString()</h3>
+        <a href="@Url.Action("LogOut","Login")">LogOut</a>
+    </div>
+</body>
+</html>
