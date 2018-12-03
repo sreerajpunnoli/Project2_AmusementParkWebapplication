@@ -1,0 +1,39 @@
+﻿@model ProjectNew.Models.TicketDetail
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Ticket Detail</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.TicketDay, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <p>Entry Day:</p>
+            @Html.EditorFor(model => model.TicketDay, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TicketDay, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.AvailableSeatCount, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <p>No of Entries:</p>
+            @Html.EditorFor(model => model.AvailableSeatCount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AvailableSeatCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Book" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
