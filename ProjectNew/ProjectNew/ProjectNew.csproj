@@ -136,13 +136,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="Controllers\RideDetailsController.cs" />
+    <Compile Include="Controllers\TicketBookingController.cs" />
+    <Compile Include="Controllers\TicketDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\Model2.cs" />
-    <Compile Include="Models\RideDetail.cs" />
+    <Compile Include="Models\Model3.cs" />
+    <Compile Include="Models\TicketBooking.cs" />
+    <Compile Include="Models\TicketDetail.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -168,7 +171,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -184,11 +189,9 @@
     <Content Include="Views\Home\Gallery.cshtml" />
     <Content Include="Views\Registration\SignUp.cshtml" />
     <Content Include="Views\Registration\SignIn.cshtml" />
-    <Content Include="Views\RideDetails\Create.cshtml" />
-    <Content Include="Views\RideDetails\Delete.cshtml" />
-    <Content Include="Views\RideDetails\Details.cshtml" />
-    <Content Include="Views\RideDetails\Edit.cshtml" />
-    <Content Include="Views\RideDetails\Index.cshtml" />
+    <Content Include="Views\TicketDetails\Create.cshtml" />
+    <Content Include="Views\TicketDetails\Index.cshtml" />
+    <Content Include="Views\TicketDetails\Booking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

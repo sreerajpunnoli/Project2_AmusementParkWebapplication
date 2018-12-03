@@ -12,7 +12,7 @@ namespace ProjectNew.Models
         {
         }
 
-        public virtual DbSet<RideDetail> RideDetails { get; set; }
+        public virtual DbSet<TicketDetail> TicketDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

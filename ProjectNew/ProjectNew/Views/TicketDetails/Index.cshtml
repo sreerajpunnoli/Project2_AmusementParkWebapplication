@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectNew.Models.RideDetail>
+﻿@model IEnumerable<ProjectNew.Models.TicketDetail>
 
 @{
     ViewBag.Title = "Index";
@@ -14,12 +14,12 @@
     <tr>
         <th>
             <text style="color:black">
-                @Html.DisplayNameFor(model => model.RideDay)
+                @Html.DisplayNameFor(model => model.TicketDay)
             </text>
         </th>
         <th>
             <text style="color:black">
-                @Html.DisplayNameFor(model => model.RideSeats)
+                @Html.DisplayNameFor(model => model.AvailableSeatCount)
             </text>
         </th>
         <th></th>
@@ -29,12 +29,12 @@
     <tr>
         <td>
             <text style="color:black">
-                @Html.DisplayFor(modelItem => item.RideDay)
+                @Html.DisplayFor(modelItem => item.TicketDay)
             </text>
         </td>
         <td>
             <text style="color:black">
-                @Html.DisplayFor(modelItem => item.RideSeats)
+                @Html.DisplayFor(modelItem => item.AvailableSeatCount)
             </text>
         </td>
         <td>
