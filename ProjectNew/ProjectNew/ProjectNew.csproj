@@ -192,6 +192,7 @@
     <Content Include="Views\TicketDetails\Create.cshtml" />
     <Content Include="Views\TicketDetails\Index.cshtml" />
     <Content Include="Views\TicketDetails\Booking.cshtml" />
+    <Content Include="Views\TicketBooking\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

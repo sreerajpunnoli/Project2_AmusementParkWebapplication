@@ -17,5 +17,7 @@ namespace ProjectNew.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
+
+        public System.Data.Entity.DbSet<ProjectNew.Models.TicketBooking> TicketBookings { get; set; }
     }
 }
