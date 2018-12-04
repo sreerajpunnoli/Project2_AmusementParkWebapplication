@@ -10,7 +10,10 @@ namespace ProjectNew.Controllers
     {
         public ActionResult Index()
         {
+            //ServiceReference1.getTransactionRequest getTransaction = new ServiceReference1.getTransactionRequest();
+            
             return View();
+            
         }
 
         public ActionResult About()

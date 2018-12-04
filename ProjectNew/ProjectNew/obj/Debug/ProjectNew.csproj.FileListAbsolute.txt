@@ -330,4 +330,3 @@ C:/Users/shahz/Documents/GitHub/Project2_AmusementParkWebapplication/ProjectNew/
 \\Mac\Home\Documents\GitHub\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.csproj.CopyComplete
 \\Mac\Home\Documents\GitHub\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.dll
 \\Mac\Home\Documents\GitHub\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.pdb
-\\Mac\Home\Documents\GitHub\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.csprojAssemblyReference.cache
