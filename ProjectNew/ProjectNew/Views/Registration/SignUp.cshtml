@@ -6,7 +6,6 @@
 }
 
 <h2>SignUp</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -39,6 +38,8 @@
             </div>
         </div>
     </div>
+    <br />
+    <h3>Already existing?</h3>@Html.ActionLink("Sign In", "SignIn", "Registration", new { area = "" }, new { @class = "btn" })
     <script>
         function SaveForm() {
             var objAjax = new Object();
@@ -67,3 +68,4 @@
         }
     </script>
 }
+

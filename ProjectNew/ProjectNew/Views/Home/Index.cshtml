@@ -1,4 +1,49 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Id"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+
+    }
+
+
 }
-<h2>Home</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+</head>
+<body>
+    <h2>Home</h2>
+    <center>@Html.ActionLink("Check Availibility", "Index", "TicketDetails", new { area = "" }, new { @class = "btn" })</center>
+
+    <br />
+    <br />
+    <div class="slider">
+        <div id="about-slider">
+         
+
+                <div class="carousel-inner">
+
+                    <div class="item active">
+
+                        <img src="~/image7.jpg" style="width: 100%" class="img-responsive" alt="" />
+
+                        <div class="carousel-caption">
+                            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                  
+
+              
+
+            </div><!--/#about-slider-->
+        </div><!--/#slider-->
+    </div>
+</body>
+</html>
