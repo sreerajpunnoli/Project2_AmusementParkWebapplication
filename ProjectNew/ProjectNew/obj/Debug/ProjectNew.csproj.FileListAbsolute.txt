@@ -409,8 +409,8 @@ D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\bin\Antlr3.Run
 D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\bin\System.Diagnostics.DiagnosticSource.xml
 D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.csprojAssemblyReference.cache
 D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.csproj.CoreCompileInputs.cache
 D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.csproj.CopyComplete
 D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.dll
 D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.pdb
+D:\git\Project2_AmusementParkWebapplication\ProjectNew\ProjectNew\obj\Debug\ProjectNew.csprojAssemblyReference.cache

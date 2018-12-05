@@ -150,6 +150,7 @@
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\Model2.cs" />
     <Compile Include="Models\Model3.cs" />
+    <Compile Include="PostalValidateAttribute.cs" />
     <Compile Include="Models\TicketBooking.cs" />
     <Compile Include="Models\TicketDetail.cs" />
     <Compile Include="Models\UserAccount.cs" />
@@ -212,13 +213,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
-    <Content Include="Views\Registration\SignUp.cshtml" />
     <Content Include="Views\Registration\SignIn.cshtml" />
     <Content Include="Views\TicketDetails\Create.cshtml" />
     <Content Include="Views\TicketDetails\Index.cshtml" />
     <Content Include="Views\TicketDetails\Booking.cshtml" />
     <None Include="TransactionWebserviceImpl.wsdl" />
     <Content Include="Views\TicketBooking\Payment.cshtml" />
+    <Content Include="Views\Registration\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

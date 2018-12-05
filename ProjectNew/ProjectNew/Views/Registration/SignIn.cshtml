@@ -31,16 +31,16 @@
                 </tr>
                 <tr>
                     <td>
-                        <font color="black">  @Html.LabelFor(model => model.Name) </font>
+                        <font color="black">  @Html.LabelFor(model => model.Email) </font>
                     </td>
                     <td>
-                        <font color="black">  @Html.EditorFor(model => model.Name) </font>
+                        <font color="black">  @Html.EditorFor(model => model.Email) </font>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                        <font color="black">  @Html.ValidationMessageFor(model => model.Name) </font>
+                        <font color="black">  @Html.ValidationMessageFor(model => model.Email) </font>
                     </td>
                 </tr>
                 <tr>
@@ -57,9 +57,9 @@
                         <font color="black">  @Html.ValidationMessageFor(model => model.Password) </font>
                     </td>
                 <tr>
-                    <td colspan="2">
+                    @*/*<td colspan="2">
                         <label class="field-validation-error"><font color="black">@Html.DisplayFor(model => model.LoginErrorMessage) </font></label>
-                    </td>
+                    </td>*@
                 </tr>
                 <tr>
                     <td></td>
@@ -70,7 +70,7 @@
                     </td>
 
                     <td>
-                        <input type="submit" name="name" value="Login" onclick=""/>
+                        <input type="submit" name="name" value="Login"/>
                         <input type="reset" name="name" value="Clear" />
                     </td>
                 </tr>

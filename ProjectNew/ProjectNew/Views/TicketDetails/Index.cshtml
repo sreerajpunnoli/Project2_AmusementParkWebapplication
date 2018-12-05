@@ -8,8 +8,8 @@
 <h2>Availibility of Rides as per Days</h2>
 
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr>
         <th>
@@ -25,27 +25,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <text style="color:black">
-                @Html.DisplayFor(modelItem => item.TicketDay)
-            </text>
-        </td>
-        <td>
-            <text style="color:black">
-                @Html.DisplayFor(modelItem => item.AvailableSeatCount)
-            </text>
-        </td>
-        <td>
-            @Html.ActionLink("Sign In & Book", "SignIn", "Registration", new { area = "" }, new { @class = "btn" })
-        </td>
-        @*<td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <text style="color:black">
+                    @Html.DisplayFor(modelItem => item.TicketDay)
+                </text>
+            </td>
+            <td>
+                <text style="color:black">
+                    @Html.DisplayFor(modelItem => item.AvailableSeatCount)
+                </text>
+            </td>
+
+
+        </tr>
+
+    }
+</table>
+<tr>
+    <td>
+        @Html.ActionLink("Sign In & Book", "SignIn", "Registration", new { area = "" }, new { @class = "btn" })
+    </td>
+    @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>*@
-    </tr>
-}
-
-</table>
+</tr>

@@ -15,11 +15,38 @@ namespace ProjectNew.Controllers
             return View();
         }
 
-        public JsonResult SaveData(UserAccount model)
+        [HttpPost]
+        public JsonResult SignUp(ProjectNew.Models.UserAccount model)
         {
-            db.UserAccounts.Add(model);
-            db.SaveChanges();
-            return Json("Registration Successful", JsonRequestBehavior.AllowGet);
+            UserAccount user = db.UserAccounts.SingleOrDefault(x => x.Email == model.Email);
+            if (user == null)
+            {
+                db.UserAccounts.Add(model);
+                try {
+                db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}",
+                                validationErrors.Entry.Entity.ToString(),
+                                validationError.ErrorMessage);
+                            // raise a new exception nesting
+                            // the current instance as InnerException
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }
+
+                Response.Write("<script>alert('Data inserted successfully')</script>");
+                return Json("Signed Up successfully", JsonRequestBehavior.AllowGet);
+            }
+            return Json("Email Already Exists", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SignUp()
@@ -36,16 +63,15 @@ namespace ProjectNew.Controllers
         [HttpPost]
         public ActionResult SignIn(ProjectNew.Models.UserAccount userModel)
         {
-            UserAccount userDetails = db.UserAccounts.Where(x => x.Name == userModel.Name && x.Password == userModel.Password).FirstOrDefault();
+            UserAccount userDetails = db.UserAccounts.Where(x => x.Email == userModel.Email && x.Password == userModel.Password).FirstOrDefault();
             if (userDetails == null)
             {
-                userModel.LoginErrorMessage = "wrong username or Password.";
+                //userModel.LoginErrorMessage = "wrong username or Password.";
                 return View("SignIn", userModel);
             }
             else
             {
-                Session["Id"] = userDetails.Id;
-                Session["Name"] = userDetails.Name;
+                Session["UserId"] = userDetails.Id;
                 //change to booking
                 return RedirectToAction("Booking", "TicketDetails");
             }
@@ -53,7 +79,7 @@ namespace ProjectNew.Controllers
 
         public ActionResult LogOut()
         {
-            int userId = (int)Session["Id"];
+            int userId = (int) Session["Id"];
             Session.Abandon();
             return RedirectToAction("SignIn", "Registration");
         }
