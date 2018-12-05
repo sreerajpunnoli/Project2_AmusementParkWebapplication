@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectNew.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,11 +12,28 @@ namespace ProjectNew.Controllers
 {
     public class TicketBookingController : Controller
     {
+        Model3 db = new Model3();
+
         // GET: TicketBooking
-        public ActionResult Index()
+        public ActionResult Payment()
         {
             
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Payment([Bind(Include = "TicketDay,AvailableSeatCount")] TicketBooking ticketDetail)
+        {
+            if (ModelState.IsValid)
+            {
+                //All transaction and email
+                db.TicketBookings.Add(ticketDetail);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(ticketDetail);
         }
         
         public JsonResult SendEmailToCust()
@@ -24,6 +42,7 @@ namespace ProjectNew.Controllers
             Result = SendEmail("shahzan.magray@gmail.com", "Hi", "<p>Hi Shahzan<br />Hi watsaup</p>");
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
+        
         public bool SendEmail(string toEmail, string Subject, string Body)
         {
             try
