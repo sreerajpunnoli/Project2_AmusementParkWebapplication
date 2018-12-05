@@ -23,7 +23,7 @@ namespace ProjectNew.Controllers
             {
                 db.UserAccounts.Add(model);
                 try {
-                db.SaveChanges();
+                    db.SaveChanges();
                 }
                 catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                 {
@@ -79,7 +79,7 @@ namespace ProjectNew.Controllers
 
         public ActionResult LogOut()
         {
-            int userId = (int) Session["Id"];
+            int userId = (int) Session["UserId"];
             Session.Abandon();
             return RedirectToAction("SignIn", "Registration");
         }

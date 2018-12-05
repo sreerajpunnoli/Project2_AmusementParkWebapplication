@@ -1,6 +1,4 @@
-﻿@model ProjectNew.Models.TicketBooking
-
-@{
+﻿@{
     ViewBag.Title = "Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,47 +9,56 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>TicketBooking</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BookedTicketDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BookedTicketDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BookedTicketDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SeatsCount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SeatsCount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SeatsCount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TransactionId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TransactionId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TransactionId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+    <div style="max-width: 330px; padding:15px; margin: 0 auto;">
+        <div class="modal-body">
+            <form id="Payment">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" type="text" Name="CardNumber" id="CardNumber" placeholder="CardNumber" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="NameOnCard" id="NameOnCard" placeholder="NameOnCard" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="ExpiryDate" id="ExpiryDate" placeholder="ExpiryDate" />
+                    </div>
+                </div>
+            </form>
+            <div class="form-group">
+                <button class="btn btn-info form-control" type="submit" onclick="SaveForm()"><i class="glyphicon glyphicon-registration-mark"></i> Submit</button>
+                <
             </div>
         </div>
     </div>
-}
+    <script>
+        function SaveForm() {
+            var objAjax = new Object();
+            objAjax.CardNumber = document.getElementById('CardNumber').value;
+            objAjax.NameOnCard = document.getElementById('NameOnCard').value;
+            objAjax.ExpiryDate = document.getElementById('ExpiryDate').value;
 
+            if (objAjax.CardNumber == "" || objAjax.NameOnCard == "" || objAjax.ExpiryDate == "") {
+                alert("Fields are missing");
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(objAjax),
+                contentType: "application/json",
+                dataType: "json",
+                traditional: true,
+                url: "/Payment/Payment",
+                success: function (result) {
+                    alert("Payment successful");
+                    $("Payment")[0].reset();
+                    //window.location.href = './SignIn';
+                }
+            });
+        }
+    </script>
+}
