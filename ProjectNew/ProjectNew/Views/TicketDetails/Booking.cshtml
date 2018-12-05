@@ -10,14 +10,15 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <h3>Entry Fee: 10 CAD for weekdays and 12 CAD for weekends</h3>
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <text style="color:black">
+        <h4>Entry Fee: 10 CAD for weekdays and 12 CAD for weekends</h4>
+        <br />
         <div class="form-group">
             @Html.LabelFor(model => model.TicketDay, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <p>Entry Day:</p>
                 @Html.EditorFor(model => model.TicketDay, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TicketDay, "", new { @class = "text-danger" })
             </div>
@@ -25,7 +26,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AvailableSeatCount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <p>No of Entries:</p>
                 @Html.EditorFor(model => model.AvailableSeatCount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AvailableSeatCount, "", new { @class = "text-danger" })
             </div>
@@ -35,6 +35,7 @@
                 <input type="submit" value="Book" class="btn btn-default" />
             </div>
         </div>
-    </div>
+    </text>
+</div>
 }
 

@@ -7,12 +7,18 @@ using System.Net.Mail;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.ServiceModel.Description;
+using System.ServiceModel;
 
 namespace ProjectNew.Controllers
 {
     public class TicketBookingController : Controller
     {
-        Model3 db = new Model3();
+        Model3 db3 = new Model3();
+
+        Model2 db2 = new Model2();
+
+        Model1 db1 = new Model1();
 
         // GET: TicketBooking
         public ActionResult Payment()
@@ -23,23 +29,77 @@ namespace ProjectNew.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Payment([Bind(Include = "TicketDay,AvailableSeatCount")] TicketBooking ticketDetail)
+        public ActionResult Payment([Bind(Include = "CardNumber,NameOnCard,ExpiryDate")] CardDetails card)
         {
             if (ModelState.IsValid)
             {
-                //All transaction and email
-                db.TicketBookings.Add(ticketDetail);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                int userId = (int) Session["UserId"];
+
+                int? bookingId = db3.TicketBookings.Max(t => (int?) t.Id);
+                if (bookingId == null)
+                {
+                    bookingId = 1;
+                }
+
+                TransactionReference.Transaction trxn = new TransactionReference.Transaction
+                {
+                    id = bookingId,
+                    quantity = (int)Session["TicketCount"],
+                    expDate = card.ExpiryDate,
+                    cardNo = card.CardNumber,
+                    nameOnCard = card.NameOnCard
+                };
+
+                object ticketDay = Session["TicketDay"];
+                // Entry Fee: 10 CAD for weekdays and 12 CAD for weekends
+                if (ticketDay != null && (((DateTime) ticketDay).DayOfWeek == DayOfWeek.Saturday ||
+                        ((DateTime) ticketDay).DayOfWeek == DayOfWeek.Sunday))
+                { 
+                    trxn.unitPrice = 12;
+                } else
+                {
+                    trxn.unitPrice = 10;
+                }
+
+                TransactionReference.TransactionWebserviceImplClient trxnClient = new TransactionReference.TransactionWebserviceImplClient();
+                trxnClient.Endpoint.Address = new EndpointAddress("http://dev.cs.smu.ca:9090/Assignment3/services/TransactionWebserviceImpl");
+
+                bool success = trxnClient.createTransaction(trxn);
+                if (success)
+                {
+                    TicketBooking ticketBooking = new TicketBooking
+                    {
+                        Id = (int)bookingId,
+                        BookedTicketDate = (DateTime)ticketDay,
+                        UserId = userId,
+                        SeatsCount = (int)Session["TicketCount"],
+                        TransactionId = (int)bookingId
+                    };
+
+                    db3.TicketBookings.Add(ticketBooking);
+                    db3.SaveChanges();
+
+                    //TransactionReference.Transaction transaction = trxnClient.getTransaction((int)bookingId);
+                    //SendEmailToCust(userId, transaction);
+                    SendEmailToCust(userId, trxn.id, trxn.unitPrice* trxn.quantity);
+
+                    Response.Write("<script>alert('Ticket/s Booked Successfully and Email Notification Sent!')</script>");
+                    return RedirectToAction("../TicketDetails/Booking");
+                }
+
+                Response.Write("<script>alert('Unsuccessful Payment!')</script>");
+                return RedirectToAction("../TicketBooking/Payment");
             }
 
-            return View(ticketDetail);
+            return View();
         }
         
-        public JsonResult SendEmailToCust()
+        //public JsonResult SendEmailToCust(int userId, TransactionReference.Transaction transaction)
+        public JsonResult SendEmailToCust(int userId, int? trxnId, float? price)
         {
-            bool Result = false;
-            Result = SendEmail("shahzan.magray@gmail.com", "Hi", "<p>Hi Shahzan<br />Hi watsaup</p>");
+            UserAccount user = db1.UserAccounts.Find(userId);
+            bool Result = SendEmail(user.Email, "Halifax Amusement Park Booking Confirmation", "<p>Booking Confirmed! <br /><br/ >Details:Transaction Id:"+ trxnId + "<br />Total Price:"+ price+ "</p>");
+            //bool Result = SendEmail(user.Email, "Halifax Amusement Park Booking Confirmation", "<p>Booking Confirmed! <br /><br/ >Details:[Transaction Id:1<br />Total Price:20]</p>");
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
 

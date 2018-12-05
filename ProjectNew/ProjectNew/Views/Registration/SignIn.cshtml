@@ -24,60 +24,54 @@
     <div id="container body-content">
         @using (Html.BeginForm("SignIn", "Registration", FormMethod.Post))
         {
-            <table>
-                <tr>
-                    <td></td>
-                    <td style="text-decoration:underline"><font color="black"> Member SignIn</font> </td>
-                </tr>
-                <tr>
-                    <td>
-                        <font color="black">  @Html.LabelFor(model => model.Email) </font>
-                    </td>
-                    <td>
-                        <font color="black">  @Html.EditorFor(model => model.Email) </font>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <font color="black">  @Html.ValidationMessageFor(model => model.Email) </font>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <font color="black"> @Html.LabelFor(model => model.Password) </font>
-                    </td>
-                    <td>
-                        <font color="black">   @Html.EditorFor(model => model.Password) </font>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <font color="black">  @Html.ValidationMessageFor(model => model.Password) </font>
-                    </td>
-                <tr>
-                    @*/*<td colspan="2">
-                        <label class="field-validation-error"><font color="black">@Html.DisplayFor(model => model.LoginErrorMessage) </font></label>
-                    </td>*@
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-                        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
-                    </td>
-
-                    <td>
-                        <input type="submit" name="name" value="Login"/>
-                        <input type="reset" name="name" value="Clear" />
-                    </td>
-                </tr>
-            </table>
-
+        <table>
+            <tr>
+                <td>
+                    <font color="black">  @Html.LabelFor(model => model.Email) </font>
+                </td>
+                <td>
+                    <font color="black">  @Html.EditorFor(model => model.Email) </font>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <font color="black">  @Html.ValidationMessageFor(model => model.Email) </font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <font color="black"> @Html.LabelFor(model => model.Password) </font>
+                </td>
+                <td>
+                    <font color="black">   @Html.EditorFor(model => model.Password) </font>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <font color="black">  @Html.ValidationMessageFor(model => model.Password) </font>
+                </td>
+            <tr>
+                @*/*<td colspan="2">
+                <label class="field-validation-error"><font color="black">@Html.DisplayFor(model => model.LoginErrorMessage) </font></label>
+            </td>*@
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+                    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <div>
+            <input type="submit" name="name" value="Login" />
+            <input type="reset" name="name" value="Clear" />
+        </div>
         }
-
     </div>
 </body>
 </html>

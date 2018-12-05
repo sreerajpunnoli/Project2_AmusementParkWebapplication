@@ -12,7 +12,8 @@ namespace ProjectNew.Controllers
 {
     public class TicketDetailsController : Controller
     {
-        private Model2 db = new Model2();
+        private readonly Model2 db = new Model2();
+        private readonly Model3 db3 = new Model3();
 
         // GET: TicketDetails
         public ActionResult Index()
@@ -124,28 +125,40 @@ namespace ProjectNew.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Booking([Bind(Include = "TicketDay,AvailableSeatCount")] TicketDetail ticketDetail)
         {
-            if (ModelState.IsValid)
+            TicketDetail td = db.TicketDetails.Where(x => x.TicketDay == ticketDetail.TicketDay).FirstOrDefault();
+            // If availability is there
+            if(td == null)
             {
-                ///TODO: update the count in db
-
-                /*int amount = 0;
-                if (TicketDetail.TicketDay.DayOfWeek == DayOfWeek.Saturday || TicketDetail.TicketDay.DayOfWeek == DayOfWeek.Sunday)
-                {
-                    amount = TicketDetail.TicketSeats.Value * 12;
-                }
-                else
-                {
-                    amount = TicketDetail.TicketSeats.Value * 10;
-                }
-                String userId = Session["userId"].ToString();
-                // DateTime.Today;
-                db.TicketDetails.Add(TicketDetail);
-                db.SaveChanges();
-                */
-                return RedirectToAction("../Home/Index");
+                Response.Write("<script>alert('Invalid Date')</script>");
+                return RedirectToAction("../TicketDetails/Booking");
             }
 
-            return View(ticketDetail);
+            if (td.AvailableSeatCount >= ticketDetail.AvailableSeatCount)
+            {
+                Session["TicketDay"] = ticketDetail.TicketDay;
+                Session["TicketCount"] = ticketDetail.AvailableSeatCount;
+
+                return RedirectToAction("../TicketBooking/Payment");
+            }
+            ///TODO: update the count in db
+
+            /*int amount = 0;
+            if (TicketDetail.TicketDay.DayOfWeek == DayOfWeek.Saturday || TicketDetail.TicketDay.DayOfWeek == DayOfWeek.Sunday)
+            {
+                amount = TicketDetail.TicketSeats.Value * 12;
+            }
+            else
+            {
+                amount = TicketDetail.TicketSeats.Value * 10;
+            }
+            String userId = Session["userId"].ToString();
+            // DateTime.Today;
+            db.TicketDetails.Add(TicketDetail);
+            db.SaveChanges();
+            */
+
+            Response.Write("<script>alert('Only " + td.AvailableSeatCount + " tickets available!')</script>");
+            return RedirectToAction("../TicketDetails/Booking");
         }
     }
 }

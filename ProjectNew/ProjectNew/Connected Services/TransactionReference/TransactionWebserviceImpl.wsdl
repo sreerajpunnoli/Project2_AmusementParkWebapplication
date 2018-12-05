@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://service.assignment3.mcda5510.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://entity.assignment3.mcda5510.com" xmlns:impl="http://service.assignment3.mcda5510.com" targetNamespace="http://service.assignment3.mcda5510.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://service.assignment3.mcda5510.com">
+      <xsd:import namespace="http://entity.assignment3.mcda5510.com" />
+      <xsd:element name="getTransaction">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="transactionId" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getTransactionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getTransactionReturn" type="tns1:Transaction" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createTransaction">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="transaction" type="tns1:Transaction" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createTransactionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="createTransactionReturn" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateTransaction">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="transaction" type="tns1:Transaction" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateTransactionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="updateTransactionReturn" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="removeTransaction">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="transactionId" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="removeTransactionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="removeTransactionReturn" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://entity.assignment3.mcda5510.com">
+      <xsd:complexType name="Transaction">
+        <xsd:sequence>
+          <xsd:element name="cardNo" nillable="true" type="xsd:string" />
+          <xsd:element name="cardType" nillable="true" type="xsd:string" />
+          <xsd:element name="createdBy" nillable="true" type="xsd:string" />
+          <xsd:element name="createdOn" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="expDate" nillable="true" type="xsd:string" />
+          <xsd:element name="id" nillable="true" type="xsd:int" />
+          <xsd:element name="nameOnCard" nillable="true" type="xsd:string" />
+          <xsd:element name="quantity" nillable="true" type="xsd:int" />
+          <xsd:element name="totalPrice" nillable="true" type="xsd:float" />
+          <xsd:element name="unitPrice" nillable="true" type="xsd:float" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="removeTransactionRequest">
+    <wsdl:part name="parameters" element="impl:removeTransaction" />
+  </wsdl:message>
+  <wsdl:message name="createTransactionResponse">
+    <wsdl:part name="parameters" element="impl:createTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateTransactionRequest">
+    <wsdl:part name="parameters" element="impl:updateTransaction" />
+  </wsdl:message>
+  <wsdl:message name="getTransactionResponse">
+    <wsdl:part name="parameters" element="impl:getTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTransactionRequest">
+    <wsdl:part name="parameters" element="impl:getTransaction" />
+  </wsdl:message>
+  <wsdl:message name="updateTransactionResponse">
+    <wsdl:part name="parameters" element="impl:updateTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="removeTransactionResponse">
+    <wsdl:part name="parameters" element="impl:removeTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="createTransactionRequest">
+    <wsdl:part name="parameters" element="impl:createTransaction" />
+  </wsdl:message>
+  <wsdl:portType name="TransactionWebserviceImpl">
+    <wsdl:operation name="getTransaction">
+      <wsdl:input name="getTransactionRequest" message="impl:getTransactionRequest" />
+      <wsdl:output name="getTransactionResponse" message="impl:getTransactionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="createTransaction">
+      <wsdl:input name="createTransactionRequest" message="impl:createTransactionRequest" />
+      <wsdl:output name="createTransactionResponse" message="impl:createTransactionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateTransaction">
+      <wsdl:input name="updateTransactionRequest" message="impl:updateTransactionRequest" />
+      <wsdl:output name="updateTransactionResponse" message="impl:updateTransactionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="removeTransaction">
+      <wsdl:input name="removeTransactionRequest" message="impl:removeTransactionRequest" />
+      <wsdl:output name="removeTransactionResponse" message="impl:removeTransactionResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TransactionWebserviceImplSoapBinding" type="impl:TransactionWebserviceImpl">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getTransaction">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getTransactionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTransactionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createTransaction">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createTransactionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createTransactionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateTransaction">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="updateTransactionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateTransactionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeTransaction">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="removeTransactionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="removeTransactionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TransactionWebserviceImplService">
+    <wsdl:port name="TransactionWebserviceImpl" binding="impl:TransactionWebserviceImplSoapBinding">
+      <wsdlsoap:address location="http://localhost:9090/Assignment3/services/TransactionWebserviceImpl" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
