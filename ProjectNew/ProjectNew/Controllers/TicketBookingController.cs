@@ -42,7 +42,7 @@ namespace ProjectNew.Controllers
             Result = SendEmail("shahzan.magray@gmail.com", "Hi", "<p>Hi Shahzan<br />Hi watsaup</p>");
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
-        
+
         public bool SendEmail(string toEmail, string Subject, string Body)
         {
             try
