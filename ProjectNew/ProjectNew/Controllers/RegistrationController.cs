@@ -16,7 +16,7 @@ namespace ProjectNew.Controllers
         }
 
         [HttpPost]
-        public JsonResult SignUp(ProjectNew.Models.UserAccount model)
+        public ActionResult SignUp(ProjectNew.Models.UserAccount model)
         {
             UserAccount user = db.UserAccounts.SingleOrDefault(x => x.Email == model.Email);
             if (user == null)
@@ -43,10 +43,13 @@ namespace ProjectNew.Controllers
                     throw raise;
                 }
 
-                Response.Write("<script>alert('Data inserted successfully')</script>");
-                return Json("Signed Up successfully", JsonRequestBehavior.AllowGet);
+                Response.Write("<script>alert('Sign Up successfully')</script>");
+                return View("SignUp");
             }
-            return Json("Email Already Exists", JsonRequestBehavior.AllowGet);
+            Response.Write("<script>alert('User already exists ')</script>");
+            return View("SignUp");
+
+            
         }
 
         public ActionResult SignUp()

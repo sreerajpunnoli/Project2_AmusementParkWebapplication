@@ -84,11 +84,11 @@ namespace ProjectNew.Controllers
                     SendEmailToCust(userId, trxn.id, trxn.unitPrice* trxn.quantity);
 
                     Response.Write("<script>alert('Ticket/s Booked Successfully and Email Notification Sent!')</script>");
-                    return RedirectToAction("../TicketDetails/Booking");
+                    return View("Payment");
                 }
 
                 Response.Write("<script>alert('Unsuccessful Payment!')</script>");
-                return RedirectToAction("../TicketBooking/Payment");
+                return View("Payment");
             }
 
             return View();
