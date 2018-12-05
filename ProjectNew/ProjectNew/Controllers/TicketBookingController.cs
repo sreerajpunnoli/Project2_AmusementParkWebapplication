@@ -81,7 +81,7 @@ namespace ProjectNew.Controllers
 
                     //TransactionReference.Transaction transaction = trxnClient.getTransaction((int)bookingId);
                     //SendEmailToCust(userId, transaction);
-                    SendEmailToCust(userId);
+                    SendEmailToCust(userId, trxn.id, trxn.unitPrice* trxn.quantity);
 
                     Response.Write("<script>alert('Ticket/s Booked Successfully and Email Notification Sent!')</script>");
                     return RedirectToAction("../TicketDetails/Booking");
@@ -95,11 +95,11 @@ namespace ProjectNew.Controllers
         }
         
         //public JsonResult SendEmailToCust(int userId, TransactionReference.Transaction transaction)
-        public JsonResult SendEmailToCust(int userId)
+        public JsonResult SendEmailToCust(int userId, int? trxnId, float? price)
         {
             UserAccount user = db1.UserAccounts.Find(userId);
-            //bool Result = SendEmail(user.Email, "Halifax Amusement Park Booking Confirmation", "<p>Booking Confirmed! <br /><br/ >Details:[Transaction Id:"+transaction.id+"<br />Total Price:"+ transaction .totalPrice+ "]</p>");
-            bool Result = SendEmail(user.Email, "Halifax Amusement Park Booking Confirmation", "<p>Booking Confirmed! <br /><br/ >Details:[Transaction Id:1<br />Total Price:20]</p>");
+            bool Result = SendEmail(user.Email, "Halifax Amusement Park Booking Confirmation", "<p>Booking Confirmed! <br /><br/ >Details:Transaction Id:"+ trxnId + "<br />Total Price:"+ price+ "</p>");
+            //bool Result = SendEmail(user.Email, "Halifax Amusement Park Booking Confirmation", "<p>Booking Confirmed! <br /><br/ >Details:[Transaction Id:1<br />Total Price:20]</p>");
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
 
